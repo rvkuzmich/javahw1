@@ -93,7 +93,7 @@ public class MyArrayList<E> {
      */
     public void remove(E element) {
         int index = -1;
-        for (int i = 0; i <= tailIndex; i++) {
+        for (int i = 0; i < tailIndex - 1; i++) {
             if (element.equals(list[i])) {
                 index = i;
                 break;
@@ -102,7 +102,7 @@ public class MyArrayList<E> {
         if (index == -1) {
             throw new NoSuchElementException();
         }
-        for (int i = index; i < tailIndex; i++) {
+        for (int i = index; i < tailIndex - 1; i++) {
             list[i] = list[i + 1];
         }
         tailIndex--;
@@ -148,6 +148,15 @@ public class MyArrayList<E> {
     }
 
     /**
+     * Метод получения текущего размера списка
+     *
+     * @return текущий размер списка
+     */
+    public int size() {
+        return list.length;
+    }
+
+    /**
      * Метод получения индекса последнего ненулевого элемента списка
      *
      * @return индекс последнего ненулевого элемента списка
@@ -168,20 +177,17 @@ public class MyArrayList<E> {
         if (low >= high) return;
 
         int middle = low + (high - low) / 2;
-        E pivot = list[middle];
-
         int i = low;
         int j = high;
+        E pivot = list[middle];
 
         while (i <= j) {
             while (comparator.compare(list[i], pivot) < 0) {
                 i++;
             }
-
             while (comparator.compare(list[j], pivot) > 0) {
                 j--;
             }
-
             if (i <= j) {
                 E temp = list[i];
                 list[i] = list[j];

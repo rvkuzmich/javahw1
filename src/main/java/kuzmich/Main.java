@@ -11,7 +11,7 @@ public class Main {
         Random random = new Random();
 
         for (int i = 0; i < 10; i++) {
-            integers.add(random.nextInt( 100));
+            integers.add(random.nextInt(100));
         }
 
         System.out.println(integers);
@@ -23,5 +23,26 @@ public class Main {
         };
         integers.quicksort(comparator, 0, integers.lastNotNullElementIndex());
         System.out.println(integers);
+
+        MyArrayList<String> strings = new MyArrayList<>(5);
+
+        strings.add("Яна");
+        strings.add("Вася");
+        strings.add("Java");
+        strings.add("Роман");
+        strings.add("Николай");
+
+        System.out.println(strings);
+
+        Comparator<String> stringComparator = new Comparator<String>() {
+            @Override
+            public int compare(String o1, String o2) {
+                return o1.compareTo(o2);
+            }
+        };
+
+        strings.quicksort(stringComparator, 0, strings.lastNotNullElementIndex());
+
+        System.out.println(strings);
     }
 }
