@@ -9,7 +9,7 @@ import java.util.NoSuchElementException;
 class MyArrayListTest {
 
     @Test
-    void lastNotNullElementIndex() {
+    void lastNotNullElementIndexTest() {
         MyArrayList<Integer> list1 = new MyArrayList<>(3);
         list1.add(1);
         list1.add(2);
@@ -22,20 +22,19 @@ class MyArrayListTest {
     }
 
     @Test
-    void add() {
+    void addTest() {
         MyArrayList<Integer> list1 = new MyArrayList<>(5);
-        list1.add(1);
-        list1.add(2);
-        list1.add(3);
-        list1.add(4);
-        list1.add(5);
+
+        for (int i = 1; i <= 1000; i++) {
+            list1.add(i);
+        }
 
         int expected1 = 1;
         int expected2 = 2;
         int expected3 = 3;
         int expected4 = 4;
         int expected5 = 5;
-        int expectedLastNotNullElementIndex = 4;
+        int expectedLastNotNullElementIndex = 999;
 
         Assertions.assertEquals(expected1, list1.get(0));
         Assertions.assertEquals(expected2, list1.get(1));
@@ -44,15 +43,14 @@ class MyArrayListTest {
         Assertions.assertEquals(expected5, list1.get(4));
         Assertions.assertEquals(expectedLastNotNullElementIndex, list1.lastNotNullElementIndex());
 
-        list1.add(6);
-        int expectedSize = 8;
+        int expectedSize = 1232;
 
         Assertions.assertEquals(expectedSize, list1.size());
 
     }
 
     @Test
-    void testAdd() {
+    void insertIntoIndexTest() {
         MyArrayList<Integer> list1 = new MyArrayList<>(5);
         list1.add(1);
         list1.add(2);
@@ -76,7 +74,7 @@ class MyArrayListTest {
     }
 
     @Test
-    void get() {
+    void getElementTest() {
         MyArrayList<Integer> list1 = new MyArrayList<>(5);
         list1.add(1);
         list1.add(2);
@@ -95,7 +93,7 @@ class MyArrayListTest {
     }
 
     @Test
-    void remove() {
+    void removeTest() {
         MyArrayList<Integer> list1 = new MyArrayList<>(5);
         list1.add(1);
         list1.add(2);
@@ -119,26 +117,25 @@ class MyArrayListTest {
     }
 
     @Test
-    void testRemove() {
+    void removeByIndexTest() {
         MyArrayList<Integer> list1 = new MyArrayList<>(5);
-        list1.add(1);
-        list1.add(2);
-        list1.add(3);
-        list1.add(4);
-        list1.add(5);
-
-        int actual = list1.remove(4);
-        int expected = 5;
-
-        Assertions.assertEquals(expected, actual);
 
         Assertions.assertThrows(IndexOutOfBoundsException.class, () -> {
             list1.remove(10);
         });
+
+        for (int i = 1; i <= 1000; i++) {
+            list1.add(i);
+        }
+        int expected = 1000;
+        for (int i = 999; i >= 0; i--) {
+            int actual = list1.remove(i);
+            Assertions.assertEquals(expected--, actual);
+        }
     }
 
     @Test
-    void clear() {
+    void clearTest() {
         MyArrayList<Integer> list1 = new MyArrayList<>(5);
         list1.add(1);
         list1.add(2);
@@ -166,7 +163,7 @@ class MyArrayListTest {
     }
 
     @Test
-    void changeElement() {
+    void changeElementTest() {
         MyArrayList<Integer> list1 = new MyArrayList<>(5);
         list1.add(1);
         list1.add(2);
@@ -188,7 +185,7 @@ class MyArrayListTest {
 
 
     @Test
-    void quicksort() {
+    void quicksortTest() {
         MyArrayList<Integer> list1 = new MyArrayList<>(5);
         list1.add(4);
         list1.add(3);
